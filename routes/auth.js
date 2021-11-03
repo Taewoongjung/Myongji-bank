@@ -66,5 +66,13 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
     })(req, res, next);
 });
 
+router.get('/logout', isLoggedIn, (req, res) => {
+    console.log("auth/logout 진입");
+
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+});
+
 module.exports = router;
 
