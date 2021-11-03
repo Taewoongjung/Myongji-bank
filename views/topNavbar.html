@@ -1,0 +1,35 @@
+<!-- 상단 바 / ~detail.html은 topNavbar2로 load하기-->
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-white ps-3 pe-3" id="topNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="/img/logo.png" width="70" height="65"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse justify-content-sm-end" id="navbarCollapse">
+            <ul class="navbar-nav mb-2 mb-md-0 notionBox">
+                {% if user and user.id %}
+                <li class="nav-item"><a class="nav-link p-3">안녕하세요 {{user.name}}님</a></li>
+                <li class="nav-item"><a class="nav-link p-3" href="/pages/like">관심상품</a></li>
+                <li class="nav-item"><a class="nav-link p-3" href="/mypage">마이페이지</a></li>
+                <li class="nav-item"><a class="nav-link p-3" href="/auth/logout">로그아웃</a></li>
+
+                {% else %}
+                <li class="nav-item"><a class="nav-link p-3" href="/login">로그인</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <script src="/js/notionEvent.js"></script>
+    <script src="/js/notyClick.js"></script>
+    <script>
+        function commu_noty_delete(id) {
+            const request = document.getElementById(`Commu-form-${id}`);
+            const notionId = document.getElementById(`list-${id}`); 0
+            notionId.style.display = 'none';
+            request.setAttribute('action', '/notification/onlyCommu');
+            request.setAttribute('method', 'GET');
+        }
+
+    </script>
+</nav>

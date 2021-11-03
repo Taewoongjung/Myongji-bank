@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MB명지은행</title>
+</head>
+
+<body>
+<div class="flex w-100">
+    <!-- 상단 바 -->
+    {% include "topNavbar.html" %}
+
+    <!-- main -->
+    <main class="container-sm min-vh-100 contentInner">
+        <!-- 통장 만들기 -->
+        <!--      <div class="postingList border p-5" onclick="location.href='/customer/complain/{{complain.id}}'"-->
+        <!--           href="/customer/complain/{{complain.id}}">-->
+        <!--        <div class="pb-3 border-bottom">-->
+        <!--          <div class="d-sm-flex justify-content-between align-items-center mb-3">-->
+        <!--            <h1 class="postingTitle h3 fw-bold">통장만들기</h1>-->
+        <!--            <a class="text-decoration-none text-dark">연 이율: 5.0%~</a>-->
+        <!--          </div>-->
+        <!--          <a>비대면계좌</a>-->
+        <!--        </div>-->
+        <!--        <p class="postingBody pt-3">청년우대, 군인우대, 노인우대금리</p>-->
+        <!--      </div>-->
+        <div class="saleList pt-5 mt-5 border-top">
+            <div class="d-flex align-items-center">
+                <h2 class="h3 fw-bold">통장 만들기</h2>
+                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+            </div>
+        </div>
+
+        <!-- 카드 발급 -->
+        <div class="saleList pt-5 mt-5 border-top">
+            <div class="d-flex align-items-center">
+                <h2 class="h3 fw-bold">카드 발급</h2>
+                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+            </div>
+        </div>
+
+        <!-- 입금하기 -->
+        <div class="saleList pt-5 mt-5 border-top">
+            <div class="d-flex align-items-center">
+                <h2 class="h3 fw-bold">입금하기</h2>
+                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+            </div>
+        </div>
+
+        <!-- 금융활동 -->
+        <div class="saleList pt-5 mt-5 border-top">
+            <div class="d-flex align-items-center">
+                <h2 class="h3 fw-bold">금융활동</h2>
+                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
+</div>
+
+<script src="/js/topNav.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/popGuide.js"></script>
+
+</body>
+
+</html>
