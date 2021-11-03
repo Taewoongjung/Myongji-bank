@@ -10,7 +10,7 @@
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/css/style.css">
-    <title>MB명지은행</title>
+    <title>MB명지은행 - 통장 만들기</title>
 </head>
 
 <body>
@@ -20,47 +20,26 @@
 
     <!-- main -->
     <main class="container-sm min-vh-100 contentInner">
-        <!-- 통장 만들기 -->
-        <!--      <div class="postingList border p-5" onclick="location.href='/customer/complain/{{complain.id}}'"-->
-        <!--           href="/customer/complain/{{complain.id}}">-->
-        <!--        <div class="pb-3 border-bottom">-->
-        <!--          <div class="d-sm-flex justify-content-between align-items-center mb-3">-->
-        <!--            <h1 class="postingTitle h3 fw-bold">통장만들기</h1>-->
-        <!--            <a class="text-decoration-none text-dark">연 이율: 5.0%~</a>-->
-        <!--          </div>-->
-        <!--          <a>비대면계좌</a>-->
-        <!--        </div>-->
-        <!--        <p class="postingBody pt-3">청년우대, 군인우대, 노인우대금리</p>-->
-        <!--      </div>-->
-        <div class="saleList pt-5 mt-5 border-top">
-            <div class="d-flex align-items-center">
-                <h2 class="h3 fw-bold">통장 만들기</h2>
-                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+        <!-- 통장 리스트 -->
+        <div class="postingList border p-5" onclick="location.href='/customer/complain/{{complain.id}}'"
+             href="/customer/complain/{{complain.id}}">
+            <div class="pb-3 border-bottom">
+                <div class="d-sm-flex justify-content-between align-items-center mb-3">
+                    <h1 class="postingTitle h3 fw-bold">청년 내일로 통장</h1><a class="text-decoration-none text-dark">연 이율: 5.0%~</a>
+                </div>
+                <a>비대면계좌</a>
             </div>
+            <p class="postingBody pt-3">청년우대, 군인우대</p>
         </div>
-
-        <!-- 카드 발급 -->
-        <div class="saleList pt-5 mt-5 border-top">
-            <div class="d-flex align-items-center">
-                <h2 class="h3 fw-bold">카드 발급</h2>
-                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
+        <div class="postingList border p-5" onclick="location.href='/customer/complain/{{complain.id}}'"
+             href="/customer/complain/{{complain.id}}">
+            <div class="pb-3 border-bottom">
+                <div class="d-sm-flex justify-content-between align-items-center mb-3">
+                    <h1 class="postingTitle h3 fw-bold">노후준비 통장</h1><a class="text-decoration-none text-dark">연 이율: 4.5%~</a>
+                </div>
+                <a>비대면계좌</a>
             </div>
-        </div>
-
-        <!-- 입금하기 -->
-        <div class="saleList pt-5 mt-5 border-top">
-            <div class="d-flex align-items-center">
-                <h2 class="h3 fw-bold">입금하기</h2>
-                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
-            </div>
-        </div>
-
-        <!-- 금융활동 -->
-        <div class="saleList pt-5 mt-5 border-top">
-            <div class="d-flex align-items-center">
-                <h2 class="h3 fw-bold">금융활동</h2>
-                <a class="ms-3 mb-2 fw-bold text-decoration-none" href="/pages/bookRequest">Go</a>
-            </div>
+            <p class="postingBody pt-3">퇴직얼마 안남은 직장인 우대 + 추천, 노인우대금리</p>
         </div>
     </main>
 
