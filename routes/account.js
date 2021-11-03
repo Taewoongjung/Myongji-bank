@@ -19,14 +19,21 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     console.log("!! : ", req.body);
     console.log("!@!@ : ", req.user.id);
 
-    const userAccount = await Account.findOne({ where: { UserId: req.user.id } });
+    const userAccount = await Account.findOne({
+        where: {
+            name: itemName,
+            UserId: req.user.id
+        }
+    });
 
     if(userAccount) {
         return res.send(`<script type="text/javascript">alert("이미 가지고 계시는 통장입니다"); location.href="/";</script>`);
-
     } else {
+        const accountNumber = Math.floor(Math.random() * 99999999999) + 10000000000;
+
         await Account.create({
             name: itemName,
+            account_num: accountNumber,
             variability: variability,
             fee: fee,
             interest: interest,
@@ -37,7 +44,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
 });
 
 router.get('/1', async(req, res, next) => {
-    res.render('account_Detail');
+    res.render('account_detail_fir');
+});
+router.get('/2', async(req, res, next) => {
+    res.render('account_detail_sec');
 });
 
 router.get('/sign', async(req, res, next) => {

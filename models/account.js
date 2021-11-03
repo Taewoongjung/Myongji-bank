@@ -7,6 +7,14 @@ module.exports = class Account extends Sequelize.Model {
                 type: Sequelize.STRING(20),
                 allowNull: false
             },
+            account_num: {
+                type: Sequelize.TEXT,
+                allowNull: false
+            },
+            deposit: {
+                type: Sequelize.INTEGER,
+                default: 0
+            },
             interest: { // 금리
                 type: Sequelize.FLOAT,
                 allowNull: false

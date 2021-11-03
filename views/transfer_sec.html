@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>입금</title>
+</head>
+
+<body>
+<div class="flex w-100">
+    <!-- top -->
+    {% include "topNavbar.html" %}
+
+    <!-- 입금 -->
+    <main class="registerForm border container-sm overflow-hidden mt-0 mb-0 min-vh-100 pt-3 pb-5">
+        <form id="transfer-form" class="p-5">
+
+            <div class="input-group">
+                <input type="number" class="inputForm form-control p-3" id="transfer-input" name="transferInput" placeholder="이체 가능 금액 : {{moneyProvider.deposit}}"
+                       required>
+            </div>
+
+            <input type="hidden" name="deposit" value="{{moneyProvider.deposit}}" />
+            <input type="hidden" name="sendingAccount" value="{{moneyProvider.account_num}}" />
+            <input type="hidden" name="accountNum" value="{{toHim}}" />
+            <button id="nextBtn" class="btn btn-lg btn-primary w-100" type="submit" onclick="one()">이체하기</button>
+        </form>
+    </main>
+</div>
+
+<!-- footer -->
+<nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
+<script>
+    function one() {
+        const request = document.getElementById('transfer-form');
+        request.setAttribute('action', '/transfer/');
+        request.setAttribute('method', 'POST');
+    }
+</script>
+<script src="/js/topNav.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
