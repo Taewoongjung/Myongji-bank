@@ -13,4 +13,16 @@ router.post('/', isLoggedIn, async(req, res, next) => {
 
 });
 
+router.get('/1', async(req, res, next) => {
+    res.render('card_detail_fir');
+});
+
+router.get('/2', async(req, res, next) => {
+    res.render('card_detail_sec');
+});
+
+router.get('/sign', isLoggedIn, async(req, res, next) => {
+    res.render('card_sign');
+});
+
 module.exports = router;

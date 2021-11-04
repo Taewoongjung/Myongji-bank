@@ -27,6 +27,27 @@ module.exports = class Account extends Sequelize.Model {
                 type: Sequelize.STRING(1),
                 allowNull: false,
                 default: "T"
+            },
+            isCardRefistered: {
+                type: Sequelize.STRING(1),
+                allowNull: false,
+                default: "F"
+            },
+            UserName: {
+                type: Sequelize.STRING(10),
+                allowNull: false,
+            },
+            UserPhone: {
+                type: Sequelize.STRING(15),
+                allowNull: false,
+            },
+            UserEmail: {
+                type: Sequelize.STRING(50),
+                allowNull: false,
+            },
+            UserResidentNum: {
+                type: Sequelize.STRING(14),
+                allowNull: false,
             }
         }, {
             sequelize,

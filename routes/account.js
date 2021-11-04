@@ -15,7 +15,7 @@ router.use((req, res, next) => { // 모든 라우터에 회원정보 넣어주�
 });
 
 router.post('/', isLoggedIn, async(req, res, next) => {
-    const { itemName, variability, fee, interest } = req.body;
+    const { itemName, variability, fee, interest, resident_number, phone, name } = req.body;
     console.log("!! : ", req.body);
     console.log("!@!@ : ", req.user.id);
 
@@ -27,8 +27,19 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     });
 
     if(userAccount) {
-        return res.send(`<script type="text/javascript">alert("이미 가지고 계시는 통장입니다"); location.href="/";</script>`);
+        return res.send(`<script type="text/javascript">alert("이미 가지고 계시는 통장입니다"); location.href="/account";</script>`);
     } else {
+
+        if(req.user.resident_number !== resident_number){
+            return res.send(`<script type="text/javascript">alert("주민번호를 다시 확인해주세요."); location.href="/account";</script>`);
+        }
+        if(req.user.phone !== phone){
+            return res.send(`<script type="text/javascript">alert("전화번호를 다시 확인해주세요."); location.href="/account";</script>`);
+        }
+        if(req.user.name !== name){
+            return res.send(`<script type="text/javascript">alert("이름을 다시 확인해주세요."); location.href="/account";</script>`);
+        }
+
         const accountNumber = Math.floor(Math.random() * 99999999999) + 10000000000;
 
         await Account.create({
@@ -37,7 +48,12 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             variability: variability,
             fee: fee,
             interest: interest,
-            UserId: req.user.id
+            isCardRefistered: 'F',
+            UserId: req.user.id,
+            UserName: req.user.name,
+            UserPhone: req.user.phone,
+            UserEmail: req.user.email,
+            UserResidentNum: req.user.resident_number
         });
         return res.send(`<script type="text/javascript">alert("통장 개설 완료"); location.href="/";</script>`);
     }
