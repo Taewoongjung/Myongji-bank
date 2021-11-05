@@ -33,6 +33,9 @@ module.exports = class Account extends Sequelize.Model {
                 allowNull: false,
                 default: "F"
             },
+            cardId: {
+                type: Sequelize.TEXT,
+            },
             UserName: {
                 type: Sequelize.STRING(10),
                 allowNull: false,

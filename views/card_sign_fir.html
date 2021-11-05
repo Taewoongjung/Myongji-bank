@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <title>카드 발급</title>
+    <title>카드 발급 - 계좌선택</title>
 </head>
 
 <body>
@@ -28,22 +28,11 @@
             <div class="mb-1">
                 <select class="form-select" id="whichAccount" name="whichAccount">
                     {% for myAccount in myAccounts %}
-                        <option name="{{myAccount.name}}" value="{{myAccount.account_num}}" selected>
-                            {{myAccount.name}}
-                            || 계좌번호: {{myAccount.account_num}}
-                            || 이체 가능 금액:{{myAccount.deposit}}
-                        </option>
+                    <option name="{{myAccount.name}}" value="{{myAccount.account_num}}" selected>
+                        {{myAccount.name}}
+                        || 계좌번호: {{myAccount.account_num}}
+                    </option>
                     {% endfor %}
-                </select>
-            </div>
-
-            <div class="mb-1">
-                <select class="form-select" id="whichBanks" name="whichBanks">
-                    <option name="dealRoot" value="MB명지은행" selected>MB명지은행</option>
-                    <option name="dealRoot" value="KB국민은행">KB국민은행</option>
-                    <option name="dealRoot" value="미래에셋증권">미래에셋증권</option>
-                    <option name="dealRoot" value="농협">농협</option>
-                    <option name="dealRoot" value="산업">산업</option>
                 </select>
             </div>
 
