@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { User, Account } = require('../models');
+const { User, Account, Deposit } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -15,13 +15,21 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     const{ deposit, accountNum, transferInput, sendingAccount } = req.body;
     console.log("!! : ", req.body);
 
-    if(deposit < transferInput) {
+    if(Number(deposit) < Number(transferInput)) {
         return res.send(`<script type="text/javascript">alert("이체가능 금액을 넘었습니다"); location.href="/";</script>`);
     } else {
         const account = await Account.findOne({
             where: {
                 account_num: accountNum
             }
+        });
+
+        await Deposit.create({
+            sender: req.user.id,
+            sender_name: req.user.name,
+            money: transferInput,
+            receiver: account.UserId,
+            receiver_name: account.UserName
         });
 
         // 받는 사람의 계좌에서 받는 만큼 더하기
@@ -31,7 +39,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             where: {
                 account_num: accountNum
             }
-        })
+        });
 
         // 보내는 사람의 계좌에서 보내는 만큼 빼기
         await Account.update({
@@ -41,12 +49,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                 UserId: req.user.id,
                 account_num: sendingAccount
             }
-        })
+        });
 
         return res.send(`<script type="text/javascript">alert("이체 하였습니다"); location.href="/";</script>`);
     }
-
-
 });
 
 router.get('/fir', isLoggedIn, async(req, res, next) => {
@@ -79,11 +85,12 @@ router.get('/sec', isLoggedIn, async(req, res, next) => {
             }
         });
 
-        const moneyProvider = await Account.findOne({
+        const moneyTransfer = await Account.findOne({
             where: {
-                id: whichAccount
+                account_num: whichAccount
             }
         });
+        console.log("? : ", moneyTransfer);
 
         if(!isAccountRight) {
             return res.send(`<script type="text/javascript">alert("없는 계좌입니다"); location.href="/transfer/fir";</script>`);
@@ -91,7 +98,7 @@ router.get('/sec', isLoggedIn, async(req, res, next) => {
 
             res.render('transfer_sec', {
                 toHim: isAccountRight.account_num,
-                moneyProvider
+                moneyTransfer
             });
         }
     }

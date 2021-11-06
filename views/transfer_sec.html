@@ -25,12 +25,12 @@
         <form id="transfer-form" class="p-5">
 
             <div class="input-group">
-                <input type="number" class="inputForm form-control p-3" id="transfer-input" name="transferInput" placeholder="이체 가능 금액 : {{moneyProvider.deposit}}"
+                <input type="number" class="inputForm form-control p-3" id="transfer-input" name="transferInput" placeholder="이체 가능 금액 : {{moneyTransfer.deposit}}"
                        required>
             </div>
 
-            <input type="hidden" name="deposit" value="{{moneyProvider.deposit}}" />
-            <input type="hidden" name="sendingAccount" value="{{moneyProvider.account_num}}" />
+            <input type="hidden" name="deposit" value="{{moneyTransfer.deposit}}" />
+            <input type="hidden" name="sendingAccount" value="{{moneyTransfer.account_num}}" />
             <input type="hidden" name="accountNum" value="{{toHim}}" />
             <button id="nextBtn" class="btn btn-lg btn-primary w-100" type="submit" onclick="one()">이체하기</button>
         </form>
