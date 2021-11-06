@@ -19,6 +19,7 @@ const authRouter = require('./routes/auth');
 const cardRouter = require('./routes/card');
 const accountRouter = require('./routes/account');
 const transferRouter = require('./routes/transfer');
+const mypageRouter = require('./routes/mypage');
 
 const app = express();
 passportConfig();
@@ -73,6 +74,7 @@ app.use('/auth', authRouter);
 app.use('/card', cardRouter);
 app.use('/account', accountRouter);
 app.use('/transfer', transferRouter);
+app.use('/mypage', mypageRouter);
 
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

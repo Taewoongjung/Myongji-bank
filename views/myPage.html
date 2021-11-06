@@ -23,14 +23,9 @@
             <div class="profile d-flex flex-wrap align-items-center pb-5">
                 <img src="/img/profileImg.png" class="rounded-circle w-25" alt="profile">
                 <div class="ms-5">
-                    <h1 class="h3 fw-bold">{{user.nick}}</h1>
-                    {% if user.location %}
-                    <div id="myAddr" class="mt-1 mb-3 fw-bold">나의 위치 : {{user.location}}</div>
-                    {% else %}
-                    <div id="myAddr" class="mt-1 mb-3 fw-bold">위치를 등록해주세요</div>
-                    {% endif %}
+                    <h1 class="h3 fw-bold">{{user.name}} 님</h1>
+
                     <div class="gelocationBtn d-flex">
-                        <button class="btn btn-primary me-3" type="submit" onclick="getLocation()">위치</button>
 
                         <input id="getMyAddr" name="address" style="display: none;">
                         <form id="regions">
@@ -43,32 +38,31 @@
                 </div>
             </div>
 
-            <!-- 카카오맵 -->
-            <div class="mb-3">
-                <div id="kakao_map" class="w-50 flex-wrap ms-0 mb-0"
-                    style="min-width:350px; min-height:350px; border-radius: 15px; display: none;"></div>
+            <div class="saleList pt-5 mt-5 border-top">
+                <div class="d-flex align-items-center">
+                    <h2 class="h3 fw-bold">내 통장 확인</h2>
+                </div>
+                <br>
+            </div>
+            <div class="mb-1">
+                <ul>
+                    {% for myAccount in myAccounts %}
+                        <li>👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}</li>
+                    {% endfor %}
+                </ul>
             </div>
 
-            <div class="myPageList text-center d-flex flex-wrap justify-content-center">
-                <a class="m-sm-4" href="/pages/like">
-                    <img src="/img/bookmark.png" alt="관심상품">
-                    <p class="text-decoration-none">관심상품</p>
-                </a>
-                <a class="m-sm-4" href="/pages/myPostingList">
-                    <img src="/img/postingList.png" alt="내가 쓴 글">
-                    <p>내가 쓴 글</p>
-                </a>
-
-                <!-- 거래내역추가 -->
-                <a class="m-sm-4" href="/tradeHistory">
-                    <img src="/img/purchaseList.png" alt=" 거래내역">
-                    <p>거래내역</p>
-                </a>
-
-                <a class="m-sm-4" href="/pages/csList">
-                    <img src="/img/qna.png" alt="고객문의">
-                    <p>고객문의</p>
-                </a>
+            <div class="saleList pt-5 mt-5 border-top">
+                <div class="d-flex align-items-center">
+                    <h2 class="h3 fw-bold">내 카드 확인</h2>
+                </div>
+            </div>
+            <div class="mb-1">
+                <ul>
+                    {% for myCards in myCards %}
+                    <li>👉🏻 카드 명: {{myCards.name}} • 카드번호: {{myCards.card_number}} • 연결된 계좌: {{myCards.user_account_name}}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </main>
         <!-- footer -->
