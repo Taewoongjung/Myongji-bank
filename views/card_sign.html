@@ -23,7 +23,7 @@
     <main class="container-sm form-signin mt-5 mb-0 min-vh-100">
         <form id="card-form">
             <div class="loginLogo">
-                <img class="" src="/img/account_logo.png" width="350px" height="200px">
+                <img class="" src="/img/card_logo.png" width="350px" height="220px">
             </div>
 
             <h1 class="h4 mt-3">사용할 계좌</h1>
@@ -33,6 +33,7 @@
                     <option name="{{myAccount.name}}" value="{{myAccount.account_num}}" selected>
                         {{myAccount.name}}
                         || 계좌번호: {{myAccount.account_num}}
+                        <input type="hidden" name="accountName" value="{{myAccount.name}}">
                     </option>
                     {% endfor %}
                 </select>
@@ -53,6 +54,7 @@
             <input type="hidden" name="annual_fee" value="{{annual_fee}}">
             <input type="hidden" name="fee" value="{{fee}}%">
             <input type="hidden" name="grade" value="{{grade}}">
+            <input type="hidden" name="pageNum" value="{{pageNum}}">
             <input id="card" class="btn btn-lg btn-primary w-100" type="submit" value="완료"></input>
         </form>
     </main>

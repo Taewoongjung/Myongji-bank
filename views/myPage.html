@@ -45,7 +45,7 @@
                 </div>
                 <br>
             </div>
-            {% if myAccount == null %}
+            {% if myAccounts != NULL %}
                 <div class="mb-1">
                     <ul>
                         {% for myAccount in myAccounts %}
@@ -65,18 +65,19 @@
                 </div>
             {% endif %}
 
-                <div class="saleList pt-5 mt-5 border-top">
-                    <div class="d-flex align-items-center">
-                        <h2 class="h3 fw-bold">내 카드 확인</h2>
-                    </div>
-                </div>
             <!-- 발급된 카드 보기 -->
-            {% if myCard == null %}
+            <div class="saleList pt-5 mt-5 border-top">
+                <div class="d-flex align-items-center">
+                    <h2 class="h3 fw-bold">내 카드 확인</h2>
+                </div>
+            </div>
+
+            {% if myCards != NULL %}
                 <div class="mb-1">
                     <ul>
                         {% for myCard in myCards %}
                             <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
-                                👉🏻 카드 명: {{myCards.name}} • 카드번호: {{myCards.card_number}} • 연결된 계좌: {{myCards.user_account_name}}
+                                👉🏻 카드 명: {{myCard.name}} • 카드번호: {{myCard.card_number}} • 연결된 계좌: {{myCard.user_account_name}}
                             </li>
                         {% endfor %}
                     </ul>
@@ -95,24 +96,8 @@
         <!-- footer -->
         <nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
     </div>
-    <!-- kakao maps API의 service 라이브러리 -->
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0557dfefeb3b6dfb23b5c3e62231657b&libraries=services"></script>
-
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0557dfefeb3b6dfb23b5c3e62231657b"></script>
-    <script src="/js/userLocation.js"></script>
     <script src="/js/topNav.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function fixAddr(){
-            const request = document.getElementById('regions');
-            alert("위치등록을 완료했습니다");
-
-            request.setAttribute('action', 'mpfunc/location');
-            request.setAttribute('method', 'GET');
-        }
-    </script>
 </body>
 
 </html>

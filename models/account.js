@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+DataTypes = Sequelize.DataTypes;
 
 module.exports = class Account extends Sequelize.Model {
     static init(sequelize) {
@@ -29,12 +30,9 @@ module.exports = class Account extends Sequelize.Model {
                 default: "T"
             },
             isCardRefistered: {
-                type: Sequelize.STRING(1),
+                type: Sequelize.STRING(100),
                 allowNull: false,
                 default: "F"
-            },
-            cardId: {
-                type: Sequelize.TEXT,
             },
             UserName: {
                 type: Sequelize.STRING(10),

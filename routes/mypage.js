@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { User, Account, Card } = require('../models');
+const { User, Account, Card, AccountToCard } = require('../models');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -18,7 +18,7 @@ router.get('/', isLoggedIn, async(req, res, next) => {
         }
     });
 
-    const myCard = await Card.findAll({
+    const myCards = await Card.findAll({
         where: {
             UserId: req.user.id
         }
@@ -26,7 +26,7 @@ router.get('/', isLoggedIn, async(req, res, next) => {
 
     res.render('myPage',{
         myAccounts,
-        myCard,
+        myCards,
         user: req.user
     });
 });
