@@ -38,33 +38,60 @@
                 </div>
             </div>
 
+            <!-- 만들어진 통장 보기 -->
             <div class="saleList pt-5 mt-5 border-top">
                 <div class="d-flex align-items-center">
                     <h2 class="h3 fw-bold">내 통장 확인</h2>
                 </div>
                 <br>
             </div>
-            <div class="mb-1">
-                <ul>
-                    {% for myAccount in myAccounts %}
-                        <li>👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="saleList pt-5 mt-5 border-top">
-                <div class="d-flex align-items-center">
-                    <h2 class="h3 fw-bold">내 카드 확인</h2>
+            {% if myAccount == null %}
+                <div class="mb-1">
+                    <ul>
+                        {% for myAccount in myAccounts %}
+                            <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                                👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            </div>
-            <div class="mb-1">
-                <ul>
-                    {% for myCards in myCards %}
-                    <li>👉🏻 카드 명: {{myCards.name}} • 카드번호: {{myCards.card_number}} • 연결된 계좌: {{myCards.user_account_name}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% else %}
+                <div class="mb-1">
+                    <ul>
+                        <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #f5c2c7; font-size: 15px; color: #a52834">
+                            계좌가 없습니다
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+
+                <div class="saleList pt-5 mt-5 border-top">
+                    <div class="d-flex align-items-center">
+                        <h2 class="h3 fw-bold">내 카드 확인</h2>
+                    </div>
+                </div>
+            <!-- 발급된 카드 보기 -->
+            {% if myCard == null %}
+                <div class="mb-1">
+                    <ul>
+                        {% for myCard in myCards %}
+                            <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                                👉🏻 카드 명: {{myCards.name}} • 카드번호: {{myCards.card_number}} • 연결된 계좌: {{myCards.user_account_name}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="mb-1">
+                    <ul>
+                        <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #f5c2c7; font-size: 15px; color: #a52834">
+                            발급된 카드가 없습니다
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
         </main>
+
         <!-- footer -->
         <nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
     </div>

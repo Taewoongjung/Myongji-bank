@@ -18,7 +18,7 @@ router.get('/', isLoggedIn, async(req, res, next) => {
         }
     });
 
-    const myCards = await Card.findAll({
+    const myCard = await Card.findAll({
         where: {
             UserId: req.user.id
         }
@@ -26,7 +26,7 @@ router.get('/', isLoggedIn, async(req, res, next) => {
 
     res.render('myPage',{
         myAccounts,
-        myCards,
+        myCard,
         user: req.user
     });
 });
