@@ -27,6 +27,5 @@ AccountToCard.init(sequelize);
 User.associate(db);
 Card.associate(db);
 Account.associate(db);
-AccountToCard.associate(db);
 
 module.exports = db;

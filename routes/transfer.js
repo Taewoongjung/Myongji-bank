@@ -25,10 +25,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
         });
 
         await Deposit.create({
-            sender: req.user.id,
+            sender: req.user.resident_number,
             sender_name: req.user.name,
             money: transferInput,
-            receiver: account.UserId,
+            receiver: account.account_num,
             receiver_name: account.UserName
         });
 
@@ -46,7 +46,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             deposit: deposit - transferInput
         }, {
             where: {
-                UserId: req.user.id,
+                UserResidentNum: req.user.resident_number,
                 account_num: sendingAccount
             }
         });
@@ -60,7 +60,7 @@ router.get('/fir', isLoggedIn, async(req, res, next) => {
 
     const myAccounts = await Account.findAll({
         where: {
-            UserId: req.user.id
+            UserResidentNum: req.user.resident_number
         }
     });
 

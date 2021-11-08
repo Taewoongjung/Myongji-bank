@@ -4,12 +4,13 @@ DataTypes = Sequelize.DataTypes;
 module.exports = class Account extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            name: { // 통장 이름
-                type: Sequelize.STRING(20),
+            account_num: {
+                type: Sequelize.STRING(255),
+                primaryKey: true,
                 allowNull: false
             },
-            account_num: {
-                type: Sequelize.TEXT,
+            name: { // 통장 이름
+                type: Sequelize.STRING(20),
                 allowNull: false
             },
             deposit: {
@@ -29,7 +30,7 @@ module.exports = class Account extends Sequelize.Model {
                 allowNull: false,
                 default: "T"
             },
-            isCardRefistered: {
+            isCardRegistered: {
                 type: Sequelize.STRING(100),
                 allowNull: false,
                 default: "F"

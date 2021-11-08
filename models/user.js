@@ -3,16 +3,17 @@ const Sequelize = require('sequelize');
 module.exports = class User extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
+            resident_number: {
+                type: Sequelize.STRING(14),
+                primaryKey: true,
+                allowNull: false
+            },
             uid: {
                 type: Sequelize.STRING(30),
                 allowNull: false
             },
             password: {
                 type: Sequelize.STRING(100),
-                allowNull: false
-            },
-            resident_number: {
-                type: Sequelize.STRING(14),
                 allowNull: false
             },
             name: {
@@ -48,6 +49,5 @@ module.exports = class User extends Sequelize.Model {
     static associate(db) {
         db.User.hasMany(db.Card);
         db.User.hasMany(db.Account);
-        db.User.hasMany(db.AccountToCard);
     }
 };

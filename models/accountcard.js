@@ -20,12 +20,10 @@ module.exports = class AccountToCard extends Sequelize.Model {
                 type: Sequelize.STRING(20),
                 allowNull: false
             },
-            AccountId: {
-                type: Sequelize.INTEGER
+            user_resident_number: {
+                type: Sequelize.STRING(20),
+                allowNull: false
             },
-            CardId: {
-                type: Sequelize.INTEGER
-            }
         }, {
             sequelize,
             timestamps: true,
@@ -35,8 +33,5 @@ module.exports = class AccountToCard extends Sequelize.Model {
             charset: 'utf8',
             collate: 'utf8_general_ci',
         });
-    }
-    static associate(db) {
-        db.AccountToCard.belongsTo(db.User);
     }
 };

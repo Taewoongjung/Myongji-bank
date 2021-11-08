@@ -3,12 +3,13 @@ const Sequelize = require('sequelize');
 module.exports = class Card extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            name: { // 통장 이름
+            card_number: {
                 type: Sequelize.STRING(100),
+                primaryKey: true,
                 allowNull: false
             },
-            card_number: {
-                type: Sequelize.TEXT,
+            name: { // 통장 이름
+                type: Sequelize.STRING(100),
                 allowNull: false
             },
             annual_fee: { // 연회비

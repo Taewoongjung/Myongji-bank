@@ -45,13 +45,23 @@
                 </div>
                 <br>
             </div>
-            {% if myAccounts != NULL %}
+            {% if myAccounts and myAccountsPK == true %}
                 <div class="mb-1">
                     <ul>
                         {% for myAccount in myAccounts %}
-                            <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
-                                👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}
-                            </li>
+                            <form id="account-form-{{myAccount.account_num}}">
+                                <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                                    👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}
+
+                                    &emsp;&emsp;&emsp;
+                                    <input type="hidden" name="name" value="{{myAccount.name}}">
+                                    <input type="hidden" name="account_num" value="{{myAccount.account_num}}">
+                                    <input type="hidden" name="deposit" value="{{myAccount.deposit}}">
+                                    <button id="account-delete-btn-{{myAccount.account_num}}" role="button"
+                                            tabindex="-1" type="submit" class="btn"
+                                            onclick="account_delete('{{myAccount.account_num}}')" style="background-color: #0c63e4; color: white">삭제</button>
+                                </li>
+                            </form>
                         {% endfor %}
                     </ul>
                 </div>
@@ -72,13 +82,23 @@
                 </div>
             </div>
 
-            {% if myCards != NULL %}
+            {% if myCards and myCardsPK == true %}
                 <div class="mb-1">
                     <ul>
                         {% for myCard in myCards %}
+                        <form id="card-form-{{myCard.card_number}}">
                             <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
                                 👉🏻 카드 명: {{myCard.name}} • 카드번호: {{myCard.card_number}} • 연결된 계좌: {{myCard.user_account_name}}
+
+                            &emsp;&emsp;&emsp;
+                            <input type="hidden" name="name" value="{{myCard.name}}">
+                            <input type="hidden" name="card_number" value="{{myCard.card_number}}">
+                            <input type="hidden" name="user_account_name" value="{{myCard.user_account_name}}">
+                            <button id="card-delete-btn-{{myCard.card_number}}" role="button"
+                                    tabindex="-1" type="submit" class="btn"
+                                    onclick="card_delete('{{myCard.card_number}}')" style="background-color: #0c63e4; color: white">삭제</button>
                             </li>
+                        </form>
                         {% endfor %}
                     </ul>
                 </div>
@@ -96,6 +116,18 @@
         <!-- footer -->
         <nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
     </div>
+    <script>
+        function account_delete(id) {
+            const request = document.getElementById(`account-form-${id}`);
+            request.setAttribute('action', '/mypage/accountDelete');
+            request.setAttribute('method', 'POST');
+        }
+        function card_delete(id) {
+            const request = document.getElementById(`card-form-${id}`);
+            request.setAttribute('action', '/mypage/cardDelete');
+            request.setAttribute('method', 'POST');
+        }
+    </script>
     <script src="/js/topNav.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>

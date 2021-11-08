@@ -22,7 +22,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     const userAccount = await Account.findOne({
         where: {
             name: itemName,
-            UserId: req.user.id
+            UserResidentNum: resident_number
         }
     });
 
@@ -48,8 +48,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             variability: variability,
             fee: fee,
             interest: interest,
-            isCardRefistered: 'F',
-            UserId: req.user.id,
+            isCardRegistered: 'F',
             UserName: req.user.name,
             UserPhone: req.user.phone,
             UserEmail: req.user.email,

@@ -30,15 +30,15 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     const doesUserhaveCard = await AccountToCard.findOne({
         where: {
             card_name: itemName,
-            UserId: req.user.id
+            user_resident_number: req.user.resident_number
         }
     });
     console.log("맞나? : ", doesUserhaveCard);
-    const nameOfcard = (doesUserhaveCard === null) ? "a" : doesUserhaveCard.card_name;
+    const nameOfcard = (doesUserhaveCard === null) ? 'a' : doesUserhaveCard.card_name ;
 
     const userInfo = await User.findOne({
         where: {
-            id: req.user.id
+            resident_number: req.user.resident_number
         }
     });
 
@@ -50,7 +50,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             return res.send(`<script type="text/javascript">alert("이미 보유중이신 카드 입니다."); location.href="/card/";</script>`);
         } else {
             const LatestPkOfCard = await Card.findOne({order: [['createdAt', 'DESC']]});
-            console.log("카드 id : ", LatestPkOfCard);
+            console.log("카드 : ", LatestPkOfCard);
             if (LatestPkOfCard === null) {
                 console.log("ㅋㅋㅋ: ", whichAccount);
                 const accountPK = await Account.findOne({
@@ -63,12 +63,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                 // 카드 아이디 업데이트
                 await AccountToCard.create({
                     card_num: finalCardNumber,
-                    CardId: 1,
                     card_name: itemName,
                     account_num: whichAccount,
                     account_name: accountName,
-                    AccountId: accountPK.id,
-                    UserId: req.user.id
+                    user_resident_number: resident_number
                 });
 
                 await Card.create({
@@ -78,15 +76,22 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                     fee: fee,
                     grade: grade,
                     user_account_name: whichAccount,
-                    UserId: req.user.id,
                     user_name: req.user.name,
                     user_phone: req.user.phone,
                     user_email: req.user.email,
                     user_resident_number: req.user.resident_number
                 });
+
+                await Account.update({
+                    isCardRegistered: 'T'
+                }, {
+                    where: {
+                        account_num: whichAccount
+                    }
+                });
+
             } else {
                 console.log("else에 들어감");
-                console.log("ㅁㅁㅁ: ", LatestPkOfCard.id + 1);
                 console.log("else의 ㅋㅋㅋ: ", whichAccount);
 
                 const accountPK = await Account.findOne({
@@ -99,12 +104,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                 // 카드 아이디 업데이트
                 await AccountToCard.create({
                     card_num: finalCardNumber,
-                    CardId: LatestPkOfCard.id + 1,
                     card_name: itemName,
                     account_num: whichAccount,
                     account_name: accountName,
-                    AccountId: accountPK.id,
-                    UserId: req.user.id
+                    user_resident_number: resident_number
                 });
 
                 await Card.create({
@@ -114,12 +117,20 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                     fee: fee,
                     grade: grade,
                     user_account_name: whichAccount,
-                    UserId: req.user.id,
                     user_name: req.user.name,
                     user_phone: req.user.phone,
                     user_email: req.user.email,
                     user_resident_number: req.user.resident_number
                 });
+
+                await Account.update({
+                    isCardRegistered: 'T'
+                }, {
+                    where: {
+                        account_num: whichAccount
+                    }
+                });
+
             }
             return res.send(`<script type="text/javascript">alert("카드발급 완료"); location.href="/";</script>`);
         }
@@ -142,7 +153,7 @@ router.get('/sign', isLoggedIn, async(req, res, next) => {
 
     const myAccounts = await Account.findAll({
         where: {
-            UserId: req.user.id
+            UserResidentNum: req.user.resident_number
         }
     });
 

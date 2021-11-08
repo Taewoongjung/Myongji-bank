@@ -14,7 +14,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
 
     const { id, name, phone, email, password, re_password, resident_number, address, job } = req.body;
     try {
-        const exUser = await User.findOne({ where: { id: id } });
+        const exUser = await User.findOne({ where: { resident_number: resident_number } });
         const exUserSecondFilter = await User.findOne({ where: { resident_number: resident_number } });
 
         if (exUser) {
