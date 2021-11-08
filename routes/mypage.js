@@ -17,7 +17,7 @@ router.get('/', isLoggedIn, async(req, res, next) => {
     const myAccounts = await Account.findAll({
         raw: true,
         where: {
-            UserResidentNum: req.user.resident_number
+            user_resident_num: req.user.resident_number
         }
     });
     const accountPK = (myAccounts[0]) ? true : false;
@@ -49,8 +49,8 @@ router.post('/accountDelete', isLoggedIn, async (req, res, next) => {
         const isCardResgistered = await Account.findOne({
             where: { account_num: account_num }
         });
-        console.log("isCardResgistered.isCardRegistered = ",isCardResgistered.isCardRegistered);
-        if (isCardResgistered.isCardRegistered === 'T') { // 카드랑 연결 되어 있으면
+        console.log("isCardResgistered.is_card_registered = ",isCardResgistered.is_card_registered);
+        if (isCardResgistered.is_card_registered === 'T') { // 카드랑 연결 되어 있으면
             const thisCardShouldBeDestoryed = await AccountToCard.findOne({
                 where: { account_num: account_num }
             });
@@ -87,7 +87,7 @@ router.post('/cardDelete', isLoggedIn, async (req, res, next) => {
 
         if (accounts.length === 1 ) {
             await Account.update({
-                isCardRegistered: 'F'
+                is_card_registered: 'F'
             },{
                 where: {
                     account_num: user_account_name

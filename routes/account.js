@@ -17,7 +17,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
     const userAccount = await Account.findOne({
         where: {
             name: itemName,
-            UserResidentNum: resident_number
+            user_resident_num: resident_number
         }
     });
 
@@ -43,11 +43,11 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             variability: variability,
             fee: fee,
             interest: interest,
-            isCardRegistered: 'F',
-            UserName: req.user.name,
-            UserPhone: req.user.phone,
-            UserEmail: req.user.email,
-            UserResidentNum: req.user.resident_number
+            is_card_registered: 'F',
+            user_name: req.user.name,
+            user_phone: req.user.phone,
+            user_email: req.user.email,
+            user_resident_num: req.user.resident_number
         });
         return res.send(`<script type="text/javascript">alert("통장 개설 완료"); location.href="/";</script>`);
     }

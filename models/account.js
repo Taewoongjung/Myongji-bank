@@ -30,24 +30,24 @@ module.exports = class Account extends Sequelize.Model {
                 allowNull: false,
                 default: "T"
             },
-            isCardRegistered: {
+            is_card_registered: { // isCardRegistered
                 type: Sequelize.STRING(100),
                 allowNull: false,
                 default: "F"
             },
-            UserName: {
+            user_name: { // UserName
                 type: Sequelize.STRING(10),
                 allowNull: false,
             },
-            UserPhone: {
+            user_phone: { // UserPhone
                 type: Sequelize.STRING(15),
                 allowNull: false,
             },
-            UserEmail: {
+            user_email: { // UserEmail
                 type: Sequelize.STRING(50),
                 allowNull: false,
             },
-            UserResidentNum: {
+            user_resident_num: { // UserResidentNum
                 type: Sequelize.STRING(14),
                 allowNull: false,
             }

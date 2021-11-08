@@ -46,7 +46,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             deposit: deposit - transferInput
         }, {
             where: {
-                UserResidentNum: req.user.resident_number,
+                user_resident_num: req.user.resident_number,
                 account_num: sendingAccount
             }
         });
@@ -60,7 +60,7 @@ router.get('/fir', isLoggedIn, async(req, res, next) => {
 
     const myAccounts = await Account.findAll({
         where: {
-            UserResidentNum: req.user.resident_number
+            user_resident_num: req.user.resident_number
         }
     });
 
