@@ -72,18 +72,31 @@ router.post('/cardDelete', isLoggedIn, async (req, res, next) => {
         const { name, card_number, user_account_name } = req.body;
         console.log("/mypage/cardDelete에서 ",req.body);
 
-        await Card.destroy({ where: { card_number: card_number } });
-        await AccountToCard.destroy({ where: {card_num: card_number } });
 
-        await Account.update({
-            isCardRegistered: 'F'
-        },{
+        // 한 통장에 여러개의 카드가 연결되어 있을 경우
+        const accounts = await AccountToCard.findAll({
             where: {
                 account_num: user_account_name
             }
         });
+        console.log("모듬 : ", accounts);
+        console.log("길이 : ", accounts.length);
 
-        return res.send(`<script type="text/javascript">alert("${card_number} 카드가 해지 되었습니다."); location.href="/mypage/";</script>`);
+        await Card.destroy({ where: { card_number: card_number } });
+        await AccountToCard.destroy({ where: {card_num: card_number } });
+
+        if (accounts.length === 1 ) {
+            await Account.update({
+                isCardRegistered: 'F'
+            },{
+                where: {
+                    account_num: user_account_name
+                }
+            });
+            return res.send(`<script type="text/javascript">alert("${card_number} 카드가 해지 되었습니다."); location.href="/mypage/";</script>`);
+        } else {
+            return res.send(`<script type="text/javascript">alert("${card_number} 카드가 해지 되었습니다."); location.href="/mypage/";</script>`);
+        }
 
     } catch (error) {
         console.log(error);

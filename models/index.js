@@ -24,8 +24,4 @@ Account.init(sequelize);
 Deposit.init(sequelize);
 AccountToCard.init(sequelize);
 
-User.associate(db);
-Card.associate(db);
-Account.associate(db);
-
 module.exports = db;

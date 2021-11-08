@@ -54,7 +54,4 @@ module.exports = class Card extends Sequelize.Model {
             collate: 'utf8_general_ci',
         });
     }
-    static associate(db) {
-        db.Card.belongsTo(db.User);
-    }
 };
