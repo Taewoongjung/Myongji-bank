@@ -35,8 +35,6 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             user_resident_number: req.user.resident_number
         }
     });
-    console.log("맞나? : ", doesUserhaveCard);
-    console.log("맞나?@@@ : ", doesUserhaveCardByAccount);
     const nameOfcard = (doesUserhaveCard === null) ? 'false' : doesUserhaveCard.card_name ;
 
     const userInfo = await User.findOne({
