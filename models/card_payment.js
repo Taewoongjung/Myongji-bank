@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Card extends Sequelize.Model {
+module.exports = class CardPayment extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
             card_number: {
@@ -12,18 +12,9 @@ module.exports = class Card extends Sequelize.Model {
                 type: Sequelize.STRING(100),
                 allowNull: false
             },
-            annual_fee: { // 연회비
-                type: Sequelize.TEXT,
-                allowNull: false
-            },
             limit: { // 한도
                 type: Sequelize.STRING(1000),
                 allowNull: false,
-                default: '1,000,000원'
-            },
-            fee: { // 수수료
-                type: Sequelize.STRING(1000),
-                allowNull: false
             },
             grade: {
                 type: Sequelize.STRING(20),
@@ -37,24 +28,12 @@ module.exports = class Card extends Sequelize.Model {
                 type: Sequelize.STRING(20),
                 allowNull: false
             },
-            user_account_name: {
-                type: Sequelize.STRING(20),
-                allowNull: false
-            },
-            user_phone: {
-                type: Sequelize.STRING(15),
-                allowNull: false,
-            },
-            user_email: {
-                type: Sequelize.STRING(50),
-                allowNull: false,
-            }
         }, {
             sequelize,
             timestamps: true,
             paranoid: true,
-            modelName: 'Card',
-            tableName: 'cards',
+            modelName: 'CardPayment',
+            tableName: 'card_payments',
             charset: 'utf8',
             collate: 'utf8_general_ci',
         });

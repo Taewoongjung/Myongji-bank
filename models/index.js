@@ -6,6 +6,7 @@ const Card = require('./card');
 const Account = require('./account');
 const Deposit = require('./deposit');
 const AccountToCard = require('./accountcard');
+const CardPayment = require('./card_payment');
 
 const db = {};
 
@@ -17,11 +18,13 @@ db.Card = Card;
 db.Account = Account;
 db.Deposit = Deposit;
 db.AccountToCard = AccountToCard;
+db.CardPayment = CardPayment;
 
 User.init(sequelize);
 Card.init(sequelize);
 Account.init(sequelize);
 Deposit.init(sequelize);
 AccountToCard.init(sequelize);
+CardPayment.init(sequelize);
 
 module.exports = db;

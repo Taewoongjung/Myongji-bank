@@ -10,7 +10,7 @@ router.use((req, res, next) => { // 모든 라우터에 회원정보 넣어주�
 });
 
 router.post('/', isLoggedIn, async(req, res, next) => {
-    const { itemName, variability, fee, interest, resident_number, phone, name } = req.body;
+    const { itemName, fee, interest, resident_number, phone, name, kindOfAccount } = req.body;
     console.log("!! : ", req.body);
     console.log("!@!@ : ", req.user.id);
 
@@ -40,10 +40,10 @@ router.post('/', isLoggedIn, async(req, res, next) => {
         await Account.create({
             name: itemName,
             account_num: accountNumber,
-            variability: variability,
             fee: fee,
             interest: interest,
             is_card_registered: 'F',
+            kind_of_account: kindOfAccount,
             user_name: req.user.name,
             user_phone: req.user.phone,
             user_email: req.user.email,
@@ -61,14 +61,14 @@ router.get('/2', async(req, res, next) => {
 });
 
 router.get('/sign', async(req, res, next) => {
-    const { itemName, variability, fee, interest } = req.query;
-    console.log("@@ : ", itemName, variability, fee, interest);
+    const { itemName, fee, interest, kindOfAccount } = req.query;
+    console.log("@@ : ", itemName, fee, interest, kindOfAccount);
 
     res.render('account_sign',{
         itemName,
-        variability,
         fee,
-        interest
+        interest,
+        kindOfAccount
     });
 });
 

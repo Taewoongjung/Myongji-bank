@@ -15,7 +15,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
         whichAccount, itemName,
         annual_fee, fee,
         grade, name, resident_number,
-        phone, pageNum
+        phone, pageNum, limit
     } = req.body;
     console.log("@@ : ", req.body);
 
@@ -75,18 +75,20 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                     user_resident_number: resident_number
                 });
 
-                await Card.create({
+                const is = await Card.create({
                     name: itemName,
                     card_number: finalCardNumber,
                     annual_fee: annual_fee,
                     fee: fee,
                     grade: grade,
+                    limit: limit,
                     user_account_name: whichAccount,
                     user_name: req.user.name,
                     user_phone: req.user.phone,
                     user_email: req.user.email,
                     user_resident_number: req.user.resident_number
                 });
+                console.log("?? : ", is);
 
                 await Account.update({
                     is_card_registered: 'T'
@@ -122,6 +124,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                     annual_fee: annual_fee,
                     fee: fee,
                     grade: grade,
+                    limit: limit,
                     user_account_name: whichAccount,
                     user_name: req.user.name,
                     user_phone: req.user.phone,
@@ -154,8 +157,8 @@ router.get('/2', async(req, res, next) => {
 });
 
 router.get('/sign', isLoggedIn, async(req, res, next) => {
-    const { itemName, annual_fee, fee, grade, pageNum } = req.query;
-    console.log("@@ : ", itemName, annual_fee, fee, grade);
+    const { itemName, annual_fee, fee, grade, limit, pageNum } = req.query;
+    console.log("@@ : ", itemName, annual_fee, fee, grade, limit);
 
     const myAccounts = await Account.findAll({
         where: {
@@ -170,6 +173,7 @@ router.get('/sign', isLoggedIn, async(req, res, next) => {
         annual_fee,
         fee,
         grade,
+        limit,
         pageNum
     });
 });

@@ -10,10 +10,21 @@ const User = require('../models/user');
 const router = express.Router();
 
 router.post('/signup', isNotLoggedIn, async (req, res, next) => {
-    console.log("auth/signup 진입");
-
-    const { id, name, phone, email, password, re_password, resident_number, address, job } = req.body;
     try {
+        console.log("auth/signup 진입");
+
+        const {
+            id, name, phone, email, password,
+            re_password, resident_number, address, job,
+            user_birth_year, user_birth_month, user_birth_day
+        } = req.body;
+
+        console.log("signup body: ", req.body);
+
+        console.log("birthDay: ", user_birth_year, ".", user_birth_month, ".", user_birth_day);
+
+        const birthDay = user_birth_year+"."+user_birth_month+"."+user_birth_day;
+
         const exUser = await User.findOne({ where: { resident_number: resident_number } });
         const exUserSecondFilter = await User.findOne({ where: { resident_number: resident_number } });
 
@@ -34,6 +45,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
             phone: phone,
             email: email,
             password: hash,
+            birth_day: birthDay,
             resident_number: resident_number,
             address: address,
             job: job

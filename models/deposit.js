@@ -11,6 +11,9 @@ module.exports = class Deposit extends Sequelize.Model {
                 type: Sequelize.STRING(100),
                 allowNull: false
             },
+            message: { // 송금할 때 보내는 메세지
+                type: Sequelize.STRING(100),
+            },
             money: {
                 type: Sequelize.INTEGER,
                 allowNull: false

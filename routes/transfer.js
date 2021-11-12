@@ -12,7 +12,7 @@ router.use((req, res, next) => { // 모든 라우터에 회원정보 넣어주�
 
 router.post('/', isLoggedIn, async(req, res, next) => {
     console.log("transfer/ 진입");
-    const{ deposit, accountNum, transferInput, sendingAccount } = req.body;
+    const{ deposit, accountNum, transferInput, sendingAccount, transferMessage } = req.body;
     console.log("!! : ", req.body);
 
     if(Number(deposit) < Number(transferInput)) {
@@ -28,8 +28,9 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             sender: req.user.resident_number,
             sender_name: req.user.name,
             money: transferInput,
+            message: transferMessage,
             receiver: account.account_num,
-            receiver_name: account.UserName
+            receiver_name: account.user_name
         });
 
         // 받는 사람의 계좌에서 받는 만큼 더하기

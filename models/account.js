@@ -21,14 +21,13 @@ module.exports = class Account extends Sequelize.Model {
                 type: Sequelize.FLOAT,
                 allowNull: false
             },
+            kind_of_account: { // 예금구분
+                type: Sequelize.STRING(100),
+                allowNull: false,
+            },
             fee: { // 수수료
                 type: Sequelize.FLOAT,
                 allowNull: false
-            },
-            variability: { // 변동 금리
-                type: Sequelize.STRING(1),
-                allowNull: false,
-                default: "T"
             },
             is_card_registered: { // isCardRegistered
                 type: Sequelize.STRING(100),
