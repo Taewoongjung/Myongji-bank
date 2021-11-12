@@ -1,6 +1,11 @@
 # Myongji-bank
 ## 팀 프로젝트(데이터베이스 설계)
 
+#### 로고
+
+![logo1 복사본](https://user-images.githubusercontent.com/70272679/141450908-6acaa008-a1e6-4f7f-9b7f-068c7ed582db.png) 
+![logo](https://user-images.githubusercontent.com/70272679/141450830-28f748b3-a1ae-4cb3-b5f8-7e9b65591968.png)
+
 #### 사용 기술
 * node.js express
 * MySQL
