@@ -12,7 +12,7 @@ router.use((req, res, next) => { // 모든 라우터에 회원정보 넣어주�
 
 router.post('/', isLoggedIn, async(req, res, next) => {
     console.log("transfer/ 진입");
-    const{ deposit, accountNum, transferInput, sendingAccount, transferMessage } = req.body;
+    const{ deposit, accountNum, transferInput, sendingAccount, transferMessage, sendingAccountRemainMoney } = req.body;
     console.log("!! : ", req.body);
 
     if(Number(deposit) < Number(transferInput)) {
@@ -22,15 +22,6 @@ router.post('/', isLoggedIn, async(req, res, next) => {
             where: {
                 account_num: accountNum
             }
-        });
-
-        await Deposit.create({
-            sender: req.user.resident_number,
-            sender_name: req.user.name,
-            money: transferInput,
-            message: transferMessage,
-            receiver: account.account_num,
-            receiver_name: account.user_name
         });
 
         // 받는 사람의 계좌에서 받는 만큼 더하기
@@ -50,6 +41,17 @@ router.post('/', isLoggedIn, async(req, res, next) => {
                 user_resident_num: req.user.resident_number,
                 account_num: sendingAccount
             }
+        });
+
+        await Deposit.create({
+            sender: req.user.resident_number,
+            sender_remain_money: Number(Number(sendingAccountRemainMoney) - Number(transferInput)),
+            sender_name: req.user.name,
+            money: transferInput,
+            message: transferMessage,
+            receiver: account.account_num,
+            receiver_remain_money: Number(account.deposit + Number(transferInput)),
+            receiver_name: account.user_name
         });
 
         return res.send(`<script type="text/javascript">alert("이체 하였습니다"); location.href="/";</script>`);

@@ -7,6 +7,10 @@ module.exports = class Deposit extends Sequelize.Model {
                 type: Sequelize.TEXT,
                 allowNull: false
             },
+            sender_remain_money: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
             sender_name: { // 보내는 사람 이름
                 type: Sequelize.STRING(100),
                 allowNull: false
@@ -20,6 +24,10 @@ module.exports = class Deposit extends Sequelize.Model {
             },
             receiver: { // 받는 사람 id
                 type: Sequelize.TEXT,
+                allowNull: false
+            },
+            receiver_remain_money: {
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
             receiver_name: { // 받는 사람 이름
