@@ -3,6 +3,11 @@ const Sequelize = require('sequelize');
 module.exports = class Deposit extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
+            trade_num: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
             sender: { // 보내는 사람 id
                 type: Sequelize.TEXT,
                 allowNull: false
