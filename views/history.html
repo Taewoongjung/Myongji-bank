@@ -32,7 +32,7 @@
             <ul>
                 {% for myAccount in myAccountHistory %}
                 <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
-                    👉🏻 to &emsp;&emsp; {{myAccount.receiver_name}} • 계좌번호: {{myAccount.receiver}} • 잔고: {{myAccount.receiver_remain_money}} • with: {{myAccount.message}}
+                    👉🏻 to &emsp;&emsp; {{myAccount.receiver_name}} • 계좌번호: {{myAccount.receiver}} • 잔고: {{myAccount.receiver_remain_money}} • message: {{myAccount.message}}
                 </li>
                 {% endfor %}
             </ul>
