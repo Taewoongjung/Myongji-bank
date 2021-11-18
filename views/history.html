@@ -27,19 +27,13 @@
             </div>
             <br>
         </div>
+        {% if myAccountHistory %}
         <div class="mb-1">
             <ul>
-                {% for myAccount in myAccounts %}
-                <form id="account-form-{{myAccount.account_num}}">
-                    <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
-                        👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}
-
-                        &emsp;&emsp;&emsp;
-                        <input type="hidden" name="name" value="{{myAccount.name}}">
-                        <input type="hidden" name="account_num" value="{{myAccount.account_num}}">
-                        <input type="hidden" name="deposit" value="{{myAccount.deposit}}">
-                    </li>
-                </form>
+                {% for myAccount in myAccountHistory %}
+                <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                    👉🏻 to &emsp;&emsp; {{myAccount.receiver_name}} • 계좌번호: {{myAccount.receiver}} • 잔고: {{myAccount.receiver_remain_money}} • with: {{myAccount.message}}
+                </li>
                 {% endfor %}
             </ul>
         </div>
@@ -47,7 +41,7 @@
         <div class="mb-1">
             <ul>0-
                 <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #f5c2c7; font-size: 15px; color: #a52834">
-                    계좌가 없습니다
+                    거래 내역이 없습니다
                 </li>
             </ul>
         </div>

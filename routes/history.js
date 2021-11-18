@@ -11,7 +11,22 @@ router.use((req, res, next) => { // 모든 라우터에 회원정보 넣어주�
 });
 
 router.get('/', isLoggedIn, async (req, res, next) => {
-    res.render("");
+    try {
+        const myAccountHistory = await Deposit.findAll({
+            where: {
+                sender: req.user.resident_number
+            }
+        });
+
+        console.log("누구 : ", myAccountHistory);
+
+        res.render("history.html", {
+            myAccountHistory
+        });
+    } catch(error) {
+        console.log(error);
+        next(error);
+    }
 });
 
 module.exports = router;
