@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>내 정보</title>
+</head>
+
+<body>
+<div class="flex w-100">
+    <!-- top -->
+    {% include "topNavbar.html" %}
+
+    <main class="myPage min-vh-100 container-sm border p-5">
+
+        <!-- 통장 내역 보기 -->
+        <div class="saleList pt-5 mt-5 border-top">
+            <div class="d-flex align-items-center">
+                <h2 class="h3 fw-bold">통장 내역</h2>
+            </div>
+            <br>
+        </div>
+        <div class="mb-1">
+            <ul>
+                {% for myAccount in myAccounts %}
+                <form id="account-form-{{myAccount.account_num}}">
+                    <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                        👉🏻 {{myAccount.name}} • 계좌번호: {{myAccount.account_num}} • 잔고: {{myAccount.deposit}}
+
+                        &emsp;&emsp;&emsp;
+                        <input type="hidden" name="name" value="{{myAccount.name}}">
+                        <input type="hidden" name="account_num" value="{{myAccount.account_num}}">
+                        <input type="hidden" name="deposit" value="{{myAccount.deposit}}">
+                    </li>
+                </form>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <div class="mb-1">
+            <ul>0-
+                <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #f5c2c7; font-size: 15px; color: #a52834">
+                    계좌가 없습니다
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- footer -->
+    <nav class="navbar navbar-expand-md bg-dark border-1" id="footerNav"></nav>
+</div>
+<script src="/js/topNav.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
