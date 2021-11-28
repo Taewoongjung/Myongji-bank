@@ -59,6 +59,9 @@ router.get('/1', async(req, res, next) => {
 router.get('/2', async(req, res, next) => {
     res.render('account_detail_sec');
 });
+router.get('/3', async(req, res, next) => {
+    res.render('account_detail_third');
+});
 
 router.get('/sign', async(req, res, next) => {
     const { itemName, fee, interest, kindOfAccount } = req.query;
