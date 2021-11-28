@@ -155,6 +155,9 @@ router.get('/1', async(req, res, next) => {
 router.get('/2', async(req, res, next) => {
     res.render('card_detail_sec');
 });
+router.get('/3', async(req, res, next) => {
+    res.render('card_detail_third');
+});
 
 router.get('/sign', isLoggedIn, async(req, res, next) => {
     const { itemName, annual_fee, fee, grade, limit, pageNum } = req.query;
