@@ -8,6 +8,10 @@ module.exports = class Deposit extends Sequelize.Model {
                 primaryKey: true,
                 autoIncrement: true
             },
+            sender_resident_num: { // 보내는 사람 주민번호
+                type: Sequelize.TEXT,
+                allowNull: false
+            },
             sender: { // 보내는 사람 id
                 type: Sequelize.TEXT,
                 allowNull: false
@@ -28,6 +32,10 @@ module.exports = class Deposit extends Sequelize.Model {
                 allowNull: false
             },
             receiver: { // 받는 사람 id
+                type: Sequelize.TEXT,
+                allowNull: false
+            },
+            receiver_resident_num: { // 받는 사람 주민번호
                 type: Sequelize.TEXT,
                 allowNull: false
             },

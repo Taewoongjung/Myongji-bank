@@ -14,14 +14,32 @@ router.get('/', isLoggedIn, async (req, res, next) => {
     try {
         const myAccountHistory = await Deposit.findAll({
             where: {
-                sender: req.user.resident_number
+                receiver_resident_num: req.user.resident_number
             }
         });
+        // const toCheckValidality = await Deposit.findAll({
+        //     where: {
+        //         receiver_resident_num: req.user.resident_number
+        //     }
+        // });
 
         console.log("누구 : ", myAccountHistory);
 
+        const myAccountHistoryReceived = await Deposit.findAll({
+            where: {
+                sender_resident_num: req.user.resident_number
+            }
+        });
+
+        console.log("ㅁㅁㅁ음 : ", myAccountHistoryReceived);
+
+
         res.render("history.html", {
-            myAccountHistory
+            myAccountHistory,
+            myAccountHistoryReceived,
+            // toCheckValidality,
+            myName: req.user.name,
+            myAccountNum: req.user.resident_number
         });
     } catch(error) {
         console.log(error);

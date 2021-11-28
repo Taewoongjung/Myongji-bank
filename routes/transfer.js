@@ -44,15 +44,29 @@ router.post('/', isLoggedIn, async(req, res, next) => {
         });
 
         await Deposit.create({
-            sender: req.user.resident_number,
+            sender_resident_num: req.user.resident_number,
+            sender: sendingAccount,
             sender_remain_money: Number(Number(sendingAccountRemainMoney) - Number(transferInput)),
             sender_name: req.user.name,
             money: transferInput,
             message: transferMessage,
+            receiver_resident_num: account.user_resident_num,
             receiver: account.account_num,
             receiver_remain_money: Number(account.deposit + Number(transferInput)),
             receiver_name: account.user_name
         });
+        // await Deposit.create({
+        //     receiver_resident_num: req.user.resident_number,
+        //     receiver: sendingAccount,
+        //     receiver_remain_money: Number(Number(sendingAccountRemainMoney) - Number(transferInput)),
+        //     receiver_name: req.user.name,
+        //     money: transferInput,
+        //     message: transferMessage,
+        //     sender_resident_num: account.user_resident_num,
+        //     sender: account.account_num,
+        //     sender_remain_money: Number(account.deposit + Number(transferInput)),
+        //     sender_name: account.user_name
+        // });
 
         return res.send(`<script type="text/javascript">alert("이체 하였습니다"); location.href="/";</script>`);
     }
