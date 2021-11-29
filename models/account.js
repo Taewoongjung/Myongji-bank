@@ -53,6 +53,7 @@ module.exports = class Account extends Sequelize.Model {
         }, {
             sequelize,
             timestamps: true,
+            timezone: '+09:00',
             paranoid: true,
             modelName: 'Account',
             tableName: 'accounts',

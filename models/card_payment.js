@@ -31,6 +31,7 @@ module.exports = class CardPayment extends Sequelize.Model {
         }, {
             sequelize,
             timestamps: true,
+            timezone: '+09:00',
             paranoid: true,
             modelName: 'CardPayment',
             tableName: 'card_payments',

@@ -29,22 +29,26 @@
         </div>
         {% if myAccountHistory %}
         <div class="mb-1">
+            {% if myAccountHistory %}
                 <ul>
                     {% for myAccount in myAccountHistory %}
-                        <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
-                            <span style="color: #a52834">(입금)</span> &emsp; to&emsp; 👉🏻  &emsp;&emsp; {{myAccount.sender_name}} • 계좌번호: {{myAccount.sender}} • <u>나의 잔고: {{myAccount.receiver_remain_money}}</u> • <u style="color: #a52834">금액: + {{myAccount.money}}</u>  • message: {{myAccount.message}}
-                            {{myAccount.createdAt}}
-                        </li>
+                    <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
+                        <span style="color: #a52834">(입금)</span> &emsp; to&emsp; 👉🏻  &emsp;&emsp; {{myAccount.sender_name}} • 계좌번호: {{myAccount.sender}} • <u>나의 잔고: {{myAccount.receiver_remain_money}}</u> • <u style="color: #a52834">금액: + {{myAccount.money}}</u>  • message: {{myAccount.message}}
+                        • •  {{myAccount.createdAt}}
+                    </li>
                     {% endfor %}
                 </ul>
+            {% endif %}
+            {% if myAccountHistoryReceived %}
                 <ul>
                     {% for myAccount in myAccountHistoryReceived %}
                     <li style="padding: 5px 0px 5px 5px; margin-bottom: 5px; border-bottom: 1px solid #efefef; font-size: 15px;">
                         <span style="color: blue">(출금)</span> &emsp; to&emsp; 👉🏻  &emsp;&emsp; {{myAccount.receiver_name}} • 계좌번호: {{myAccount.receiver}} • <u>나의 잔고: {{myAccount.sender_remain_money}}</u> • <u style="color: blue">금액: - {{myAccount.money}}</u> • message: {{myAccount.message}}
-                        {{myAccount.createdAt}}
+                        • •  {{myAccount.createdAt}}
                     </li>
                     {% endfor %}
                 </ul>
+            {% endif %}
         </div>
         {% else %}
         <div class="mb-1">

@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const moment = require('moment-timezone');
 
 module.exports = class Deposit extends Sequelize.Model {
     static init(sequelize) {
@@ -46,10 +47,11 @@ module.exports = class Deposit extends Sequelize.Model {
             receiver_name: { // 받는 사람 이름
                 type: Sequelize.STRING(100),
                 allowNull: false
-            },
+            }
         }, {
             sequelize,
             timestamps: true,
+            timezone: '+09:00',
             paranoid: true,
             modelName: 'Deposit',
             tableName: 'deposits',
