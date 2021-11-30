@@ -65,7 +65,6 @@ router.get('/', isLoggedIn, async (req, res, next) => {
             })
         }
 
-
         res.render("history.html", {
             myAccountHistory: history_fir,
             myAccountHistoryReceived: history_sec,
